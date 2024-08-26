@@ -19,6 +19,12 @@ const Headers = props => {
     history.replace('/login')
   }
 
+  const {history} = props
+  const path = history.location.pathname
+
+  const homeActive = path === '/' ? 'home-active' : ''
+  const jobsActive = path === '/jobs' ? 'jobs-active' : ''
+
   return (
     <>
       <nav className="sm-navbar-container">
@@ -83,11 +89,11 @@ const Headers = props => {
 
         <div className="lg-nav-bar-buttons-container">
           <Link to="/" className="link-item">
-            <p className="nav-home-btn"> Home </p>
+            <p className={`nav-home-btn ${homeActive}`}> Home </p>
           </Link>
 
           <Link to="/jobs" className="link-item">
-            <p className="nav-jobs-btn"> Jobs </p>
+            <p className={`nav-jobs-btn ${jobsActive}`}> Jobs </p>
           </Link>
         </div>
 

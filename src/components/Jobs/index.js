@@ -277,8 +277,9 @@ class Jobs extends Component {
       } else {
         this.setState(
           prevState => ({
-            toggledEmploymentTypeList:
-              prevState.toggledEmploymentTypeList.filter(each => each !== type),
+            toggledEmploymentTypeList: prevState.toggledEmploymentTypeList.filter(
+              each => each !== type,
+            ),
           }),
           this.getJobsData,
         )
@@ -499,8 +500,13 @@ class Jobs extends Component {
   }
 
   render() {
-    const {profileApiStatus, jobsApiStatus, searchVal, radioVal, locationVal} =
-      this.state
+    const {
+      profileApiStatus,
+      jobsApiStatus,
+      searchVal,
+      radioVal,
+      locationVal,
+    } = this.state
 
     console.log(locationVal)
 
@@ -508,112 +514,122 @@ class Jobs extends Component {
       <div>
         <Headers />
         <div className="jobs-main-container">
-          <div className="sm-search-box-main-container">
-            <div className="sm-search-box-container">
-              <div>
-                <input
-                  type="search"
-                  placeholder="Search"
-                  className="search-box"
-                  onChange={this.onEnterSearchInput}
-                  value={searchVal}
-                  onKeyDown={this.onClickEnter}
-                />
-              </div>
-              <div className="search-icon-container">
-                <button
-                  type="button"
-                  aria-label="search-icon"
-                  data-testid="searchButton"
-                  className="search-icon-btn"
-                  onClick={this.onClickSearchIcon}
-                >
-                  <IoIosSearch className="search-icon" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="lg-name-filters-section-container">
-            <div className="profile-container">
-              {this.renderProfileApiSwitchCondition(profileApiStatus)}
-            </div>
-            <hr />
-            <div className="employment-type-container">
-              <h1 className="type-of-employment-heading">Type of Employment</h1>
-              <ul className="each-employment-type-container">
-                {employmentTypesList.map(each => (
-                  <li key={each.employeeId} className="employee-type-list-item">
-                    <input
-                      type="checkbox"
-                      id={each.employeeId}
-                      value={each.labelName}
-                      onChange={this.onChangeEmployeeType}
-                      className="check-box"
-                    />
-                    <label
-                      htmlFor={each.employeeId}
-                      className="employment-type-label"
-                    >
-                      {each.labelName}
-                    </label>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <hr />
-
-            <div className="salary-range-container">
-              <h1 className="type-of-salary-heading">Salary Range</h1>
-              <ul className="each-salary-type-container">
-                {salaryRangesList.map(each => (
-                  <li
-                    key={each.salaryRangeId}
-                    className="package-type-list-item"
+          <div className="sidebar">
+            <div className="sm-search-box-main-container">
+              <div className="sm-search-box-container">
+                <div>
+                  <input
+                    type="search"
+                    placeholder="Search"
+                    className="search-box"
+                    onChange={this.onEnterSearchInput}
+                    value={searchVal}
+                    onKeyDown={this.onClickEnter}
+                  />
+                </div>
+                <div className="search-icon-container">
+                  <button
+                    type="button"
+                    aria-label="search-icon"
+                    data-testid="searchButton"
+                    className="search-icon-btn"
+                    onClick={this.onClickSearchIcon}
                   >
-                    <input
-                      type="radio"
-                      id={each.salaryRangeId}
-                      value={radioVal}
-                      onChange={this.onChangePackage}
-                      name="package"
-                      className="radio-button"
-                    />
-                    <label
-                      htmlFor={each.packageID}
-                      className="salary-type-label"
-                    >
-                      {each.label}
-                    </label>
-                  </li>
-                ))}
-              </ul>
+                    <IoIosSearch className="search-icon" />
+                  </button>
+                </div>
+              </div>
             </div>
 
-            <hr />
-
-            <div className="location-range-container">
-              <h1 className="select-location-heading">Select location</h1>
-              <ul className="each-salary-type-container">
-                {locationList.map(each => (
-                  <li key={each.locationId} className="package-type-list-item">
-                    <input
-                      type="radio"
-                      id={each.locationId}
-                      value={locationVal}
-                      onChange={this.onChangeLocation}
-                      name="location"
-                      className="radio-button"
-                    />
-                    <label
-                      htmlFor={each.locationId}
-                      className="salary-type-label"
+            <div className="lg-name-filters-section-container">
+              <div className="profile-container">
+                {this.renderProfileApiSwitchCondition(profileApiStatus)}
+              </div>
+              <hr />
+              <div className="employment-type-container">
+                <h1 className="type-of-employment-heading">
+                  Type of Employment
+                </h1>
+                <ul className="each-employment-type-container">
+                  {employmentTypesList.map(each => (
+                    <li
+                      key={each.employeeId}
+                      className="employee-type-list-item"
                     >
-                      {each.location}
-                    </label>
-                  </li>
-                ))}
-              </ul>
+                      <input
+                        type="checkbox"
+                        id={each.employeeId}
+                        value={each.labelName}
+                        onChange={this.onChangeEmployeeType}
+                        className="check-box"
+                      />
+                      <label
+                        htmlFor={each.employeeId}
+                        className="employment-type-label"
+                      >
+                        {each.labelName}
+                      </label>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <hr />
+
+              <div className="salary-range-container">
+                <h1 className="type-of-salary-heading">Salary Range</h1>
+                <ul className="each-salary-type-container">
+                  {salaryRangesList.map(each => (
+                    <li
+                      key={each.salaryRangeId}
+                      className="package-type-list-item"
+                    >
+                      <input
+                        type="radio"
+                        id={each.salaryRangeId}
+                        value={radioVal}
+                        onChange={this.onChangePackage}
+                        name="package"
+                        className="radio-button"
+                      />
+                      <label
+                        htmlFor={each.packageID}
+                        className="salary-type-label"
+                      >
+                        {each.label}
+                      </label>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <hr />
+
+              <div className="location-range-container">
+                <h1 className="select-location-heading">Select location</h1>
+                <ul className="each-salary-type-container">
+                  {locationList.map(each => (
+                    <li
+                      key={each.locationId}
+                      className="package-type-list-item"
+                    >
+                      <input
+                        type="radio"
+                        id={each.locationId}
+                        value={locationVal}
+                        onChange={this.onChangeLocation}
+                        name="location"
+                        className="radio-button"
+                      />
+                      <label
+                        htmlFor={each.locationId}
+                        className="salary-type-label"
+                      >
+                        {each.location}
+                      </label>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
 

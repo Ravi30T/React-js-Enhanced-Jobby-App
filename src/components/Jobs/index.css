@@ -3,6 +3,10 @@
   padding: 10px;
 }
 
+.lg-search-jobs-data-container{
+  width: 80%;
+}
+
 .sm-search-box-main-container {
   display: flex;
   justify-content: center;
